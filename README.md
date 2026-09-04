@@ -14,5 +14,7 @@ A clean, modern, and unified **Waybar** configuration designed for **Hyprland** 
 
 ```text
 ~/.config/waybar/
-├── config.jsonc    # Module layout and behavior configuration
-└── style.css       # Neon fuchsia styling and bubble aesthetics
+├── config.jsonc         # Module layout and behavior configuration
+├── style.css            # Neon fuchsia styling and bubble aesthetics
+└── scripts/
+    └── waybar-wttr.py   # Python script fetching live weather data and forecasts from wttr.in
