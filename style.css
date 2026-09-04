@@ -1,0 +1,91 @@
+* {
+    border: none;
+    font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+}
+
+/* --- DESIGN TŘÍ BUBLIN --- */
+.modules-left, .modules-center, .modules-right {
+    background-color: rgba(20, 18, 30, 0.9);
+    color: #e879f9;
+    border-radius: 20px;
+    padding: 2px 14px;
+    margin: 4px 10px;
+    box-shadow: 0px 0px 12px rgba(232, 121, 249, 0.25);
+}
+
+/* Skryje prostřední bublinu, pokud je prázdná (žádné okno) */
+#waybar.empty .modules-center {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Všechny ostatní moduly a texty jednotně v zářivé neonově fialové */
+#clock, #custom-weather, #workspaces, #window,
+#network, #bluetooth, #temperature,
+#memory, #cpu, #backlight, #pulseaudio, #tray {
+    margin: 0px 8px;
+    color: #e879f9;
+}
+
+/* --- WORKSPACES --- */
+#workspaces button {
+    color: #c084fc;
+    padding: 0 4px;
+    margin: 0 4px;
+    border-radius: 8px;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+    color: #1e1e2e;
+    background-color: #e879f9;
+    box-shadow: 0 0 8px #e879f9;
+}
+
+#workspaces button:hover {
+    background-color: rgba(232, 121, 249, 0.3);
+    color: #ffffff;
+}
+
+/* --- BATERIE (Se zachováním stavových barev) --- */
+#battery {
+    margin: 0px 8px;
+    color: #e879f9; /* Výchozí fialová, když se jen vybíjí normálně */
+}
+
+#battery.charging, #battery.plugged {
+    color: #4ade80; /* Neonová zelená při nabíjení */
+}
+#battery.warning:not(.charging) {
+    color: #facc15; /* Neonová žlutá při nízké baterii */
+}
+#battery.critical:not(.charging) {
+    color: #f87171; /* Neonová červená při kritické baterii */
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes blink {
+    to { background-color: #f87171; color: #1e1e2e; border-radius: 10px; padding: 0 5px;}
+}
+
+/* --- VYSKAKOVACÍ OKNA (TOOLTIPS) --- */
+tooltip {
+    background: rgba(20, 18, 30, 0.95);
+    border: 2px solid #e879f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(232, 121, 249, 0.4);
+}
+tooltip label {
+    color: #f3e8ff;
+}

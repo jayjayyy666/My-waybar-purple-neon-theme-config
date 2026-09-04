@@ -1,0 +1,113 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 40,
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "modules-left": [
+        "clock",
+        "custom/weather",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "network",
+        "bluetooth",
+        "temperature",
+        "memory",
+        "cpu",
+        "backlight",
+        "power-profiles-daemon",
+        "battery"
+    ],
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "disable-scroll": false,
+        "all-outputs": true
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "max-length": 50
+    },
+    "custom/weather": {
+        "tooltip": true,
+        "format": "{}",
+        "interval": 3600,
+        "exec": "~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type": "json"
+    },
+    "clock": {
+        "format": "<span font='13'></span> {:%I:%M %p  <span font='13'></span> %a, %b %e}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+    },
+    "network": {
+        "format-wifi": "<span font='14'></span>",
+        "format-ethernet": "<span font='14'></span>",
+        "format-disconnected": "<span font='14'></span>",
+        "on-click": "nm-connection-editor",
+        "tooltip-format-wifi": "Network: {essid}\nIP: {ipaddr}\nSignal: {signalStrength}%",
+        "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}",
+        "tooltip-format-disconnected": "Disconnected"
+    },
+    "bluetooth": {
+        "format": "<span font='13'></span>",
+        "format-connected": "<span font='13'></span>",
+        "on-click": "blueman-manager",
+        "tooltip-format": "{controller_alias}\nStatus: {status}",
+        "tooltip-format-connected": "{controller_alias}\nConnected"
+    },
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "format": "<span font='13'></span> {temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "System Temperature: {temperatureC}°C"
+    },
+    "memory": {
+        "format": "<span font='13'></span> {percentage}%",
+        "interval": 10,
+        "tooltip": true,
+        "tooltip-format": "Memory Usage: {used}GB / {total}GB ({percentage}%)"
+    },
+    "cpu": {
+        "format": "<span font='13'></span> {usage}%",
+        "interval": 10,
+        "tooltip": true,
+        "tooltip-format": "CPU Usage: {usage}%"
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "<span font='13'></span> {percent}%",
+        "on-scroll-up": "brightnessctl -q set 1%+",
+        "on-scroll-down": "brightnessctl -q set 1%-",
+        "tooltip": true,
+        "tooltip-format": "Screen Brightness: {percent}%"
+    },
+    "power-profiles-daemon": {
+        "format": "<span font='13'>{icon}</span>",
+        "tooltip-format": "Power Profile: {profile}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "battery": {
+        "format": "<span font='13'>{icon}</span> {capacity}%",
+        "format-charging": "<span font='13'></span> {capacity}%",
+        "format-plugged": "<span font='13'></span> {capacity}%",
+        "format-alt": "<span font='13'>{icon}</span> {time}",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "Status: {capacity}%\nRemaining: {time}"
+    }
+}
